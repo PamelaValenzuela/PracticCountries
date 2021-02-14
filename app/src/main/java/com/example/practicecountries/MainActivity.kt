@@ -2,6 +2,7 @@ package com.example.practicecountries
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
@@ -13,5 +14,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mInstaciaVMenElMain.doSomething()
+
+        mInstaciaVMenElMain.mCountriesVMEncapsulado().observe(this,{
+            Log.d("MainActiviy Probado", " hasta aqui se pueden ver los paises que son ${it.size}")
+        })
     }
 }
