@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.example.practicecountries.view.ListingFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,5 +19,7 @@ class MainActivity : AppCompatActivity() {
         mInstaciaVMenElMain.mCountriesVMEncapsulado().observe(this,{
             Log.d("MainActiviy Probado", " hasta aqui se pueden ver los paises que son ${it.size}")
         })
+
+        supportFragmentManager.beginTransaction().add(R.id.fragmentcontainer, ListingFragment()).commit()
     }
 }
