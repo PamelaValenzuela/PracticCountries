@@ -3,6 +3,8 @@ package com.example.practicecountries.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicecountries.databinding.CountriesListItemBinding
 import com.example.practicecountries.model.pojos.CountriesPojoPV
@@ -10,6 +12,10 @@ import com.example.practicecountries.model.pojos.CountriesPojoPV
 class CountriesAdapterPV: RecyclerView.Adapter<CountriesAdapterPV.ViewHolderPV>() {
 
     private var mCountriesListAdapter = listOf<CountriesPojoPV>()
+
+    private val mSelectedItemAdapter = MutableLiveData<CountriesPojoPV>()
+
+    fun selectedItemGetter():LiveData<CountriesPojoPV> = mSelectedItemAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPV {
 
@@ -21,6 +27,9 @@ class CountriesAdapterPV: RecyclerView.Adapter<CountriesAdapterPV.ViewHolderPV>(
     override fun onBindViewHolder(holder: ViewHolderPV, position: Int) {
        val mCountryOBVH= mCountriesListAdapter[position]
         holder.bind(mCountryOBVH)
+        holder.itemView.setOnClickListener{
+            mSelectedItemAdapter.value= mCountryOBVH
+        }
     }
 
     override fun getItemCount(): Int {
